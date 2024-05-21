@@ -8,6 +8,8 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-Route::apiResource('users', UserController::class);
 
-Route::get('/users/{user}/referrals', [UserController::class, 'fetchUserReferral']);
+Route::prefix('/users')->group(function () {
+    Route::post('/', [UserController::class, 'store']);
+    Route::get('/{user}/referrals', [UserController::class, 'fetchUserReferral']);
+});

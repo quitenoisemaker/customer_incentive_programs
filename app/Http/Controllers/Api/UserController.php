@@ -50,17 +50,8 @@ class UserController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * fetch user referrals.
      */
-    public function show(User $user): JsonResponse
-    {
-        //
-        return response()->json([
-            'message' => 'success',
-            'data' => $user
-        ], Response::HTTP_OK);
-    }
-
     public function fetchUserReferral(User $user): JsonResponse
     {
         $referrals = User::where('referred_by', $user->id)->get();
