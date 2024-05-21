@@ -20,7 +20,7 @@ return new class extends Migration
             $table->rememberToken();
             $table->string('referral_code')->index()->unique();
             $table->unsignedBigInteger('referred_by')->nullable();
-            $table->integer('referral_count');
+            $table->integer('referral_count')->default(0);
             $table->timestamps();
 
             $table->foreign('referred_by')->references('id')->on('users')->onUpdate('cascade')->onDelete('set null');

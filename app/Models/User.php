@@ -20,6 +20,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'referral_code',
+        'referred_by'
     ];
 
     /**
@@ -43,10 +45,5 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
-    }
-
-    public static function incrementReferralCount()
-    {
-        self::increment('referral_count');
     }
 }
