@@ -1,8 +1,8 @@
 <?php
 
-use App\Http\Controllers\Api\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\UserReferralProgramController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -10,6 +10,6 @@ Route::get('/user', function (Request $request) {
 
 
 Route::prefix('/users')->group(function () {
-    Route::post('/', [UserController::class, 'store']);
-    Route::get('/{user}/referrals', [UserController::class, 'fetchUserReferral']);
+    Route::post('/', [UserReferralProgramController::class, 'store']);
+    Route::get('/{user}/referrals', [UserReferralProgramController::class, 'fetchUserReferral']);
 });

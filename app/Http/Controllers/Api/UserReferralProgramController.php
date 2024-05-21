@@ -9,7 +9,7 @@ use App\Http\Requests\UserStoreRequest;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 
-class UserController extends Controller
+class UserReferralProgramController extends Controller
 {
 
     /**
