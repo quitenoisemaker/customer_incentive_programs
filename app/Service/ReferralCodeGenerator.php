@@ -6,14 +6,6 @@ use App\Models\User;
 
 class ReferralCodeGenerator
 {
-    /**
-     * Create a new class instance.
-     */
-    public function __construct()
-    {
-        //
-    }
-
 
     /**
      * Generates a random referral code.
@@ -30,10 +22,6 @@ class ReferralCodeGenerator
         $codeLength = 10;
         $characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
         $code = '';
-
-        for ($i = 0; $i < $codeLength; $i++) {
-            $code .= $characters[rand(0, strlen($characters) - 1)];
-        }
 
         $code = substr(str_shuffle(str_repeat($characters, 5)), 0, $codeLength);
 

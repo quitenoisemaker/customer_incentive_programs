@@ -25,8 +25,8 @@ class UserReferralProgramController extends Controller
      */
     public function store(UserStoreRequest $request): JsonResponse
     {
-
         $validatedData = $request->validated();
+
         $referredBy = null;
 
         if ($request->has('referral_code')) {
@@ -41,11 +41,11 @@ class UserReferralProgramController extends Controller
             ]
         );
 
-        User::create($requestData);
+        $user  = User::create($requestData);
 
         return response()->json([
             'message' => 'user created',
-            'data' => null
+            'data' => $user
         ], Response::HTTP_CREATED);
     }
 
