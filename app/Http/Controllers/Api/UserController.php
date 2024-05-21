@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\User;
-use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
 use App\Service\ReferralCodeGenerator;
 use App\Http\Requests\UserStoreRequest;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 
 class UserController extends Controller
@@ -23,7 +23,7 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(UserStoreRequest $request)
+    public function store(UserStoreRequest $request): JsonResponse
     {
 
         $validatedData = $request->validated();
@@ -52,12 +52,25 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(User $user)
+    public function show(User $user): JsonResponse
     {
         //
         return response()->json([
             'message' => 'success',
             'data' => $user
+        ], Response::HTTP_OK);
+    }
+
+    public function fetchUserReferral(User $user): JsonResponse
+    {
+        $referrals = User::where('referred_by', $user->id)->get();
+
+        return response()->json([
+            'message' => 'success',
+            'data' => [
+                'referrals_count' => $user->referral_count,
+                'referrals' => $referrals
+            ]
         ], Response::HTTP_OK);
     }
 }

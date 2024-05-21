@@ -9,3 +9,5 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::apiResource('users', UserController::class);
+
+Route::get('/users/{user}/referrals', [UserController::class, 'fetchUserReferral']);
