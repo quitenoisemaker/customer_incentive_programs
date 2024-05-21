@@ -45,8 +45,8 @@ class User extends Authenticatable
         ];
     }
 
-    public function incrementReferralCount()
+    public static function incrementReferralCount()
     {
-        $this->increment('referral_count');
+        self::increment('referral_count');
     }
 }
